@@ -1,6 +1,6 @@
 const express = require('express')
     const bodyParser = require('body-parser')
-    const db = require('./queries')
+   const db = require('./queriesMongoDB')
     const app = express()
     const port = 3000
 
@@ -11,12 +11,14 @@ const express = require('express')
         }))
     app.get('/', (request, response) => {
         response.json({
-            info: 'Node.js, Express, and Postgres API'
+            hello_world: 'Witness the server!'
         })
     })
+
     app.listen(port, () => {
         console.log(`App running on port ${port}.`)
     })
 
     app.get('/players', db.getPlayers)
+    app.get('/player/:id', db.getPlayer)
     app.post('/players', db.createPlayer)
